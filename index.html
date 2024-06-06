@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Team Manager</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Football Team Manager</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <button class="btn btn-primary m-2" onclick="showAddPlayerForm()">Add Player</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-secondary m-2" onclick="listPlayers()">List Players</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-danger m-2" onclick="changePosition()">Change Position</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-warning m-2" onclick="makeSubstitution()">Make Substitution</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-success m-2" onclick="startGame()">Start Game</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>Football Team Manager</h1>
+        <div id="playerList"></div>
+    </div>
+
+    <!-- Add Player Modal -->
+    <div class="modal fade" id="addPlayerModal" tabindex="-1" role="dialog" aria-labelledby="addPlayerModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addPlayerModalLabel">Add Player</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addPlayerForm">
+                        <div class="form-group">
+                            <label for="playerName">Name</label>
+                            <input type="text" class="form-control" id="playerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="playerAge">Age</label>
+                            <input type="number" class="form-control" id="playerAge" required>                        
+                        </div>
+                        <div class="form-group">
+                            <label for="playerPosition">Position</label>
+                            <select class="form-control" id="playerPosition" required>
+                                <option>Goalkeeper</option>
+                                <option>Defender</option>
+                                <option>Midfielder</option>
+                                <option>Forward</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Player</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script defer src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script defer src="js/script.js"></script>
+</body>
+</html>
