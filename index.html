@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Football Team Manager</title>
+    <meta charset="UTF-8"> <!-- Character encoding set to UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive design settings -->
+    <title>Football Team Manager</title> <!-- Title of the web page -->
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Custom CSS file -->
 </head>
 <body>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Football Team Manager</a>
+        <a class="navbar-brand" href="#">Football Team Manager</a> <!-- Brand name -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse" id="navbarNav"> <!-- Collapsible content -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <button class="btn btn-primary m-2" onclick="showAddPlayerForm()">Add Player</button>
+                    <button class="btn btn-primary m-2" onclick="showAddPlayerForm()">Add Player</button> <!-- Button to show the Add Player form -->
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-secondary m-2" onclick="listPlayers()">List Players</button>
+                    <button class="btn btn-secondary m-2" onclick="listPlayers()">List Players</button> <!-- Button to list all players -->
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-danger m-2" onclick="changePosition()">Change Position</button>
+                    <button class="btn btn-danger m-2" onclick="changePosition()">Change Position</button> <!-- Button to change a player's position -->
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-warning m-2" onclick="makeSubstitution()">Make Substitution</button>
+                    <button class="btn btn-warning m-2" onclick="makeSubstitution()">Make Substitution</button> <!-- Button to make a substitution -->
                 </li>
                 <li class="nav-item">
-                    <button class="btn btn-success m-2" onclick="startGame()">Start Game</button>
+                    <button class="btn btn-success m-2" onclick="startGame()">Start Game</button> <!-- Button to start the game -->
                 </li>
             </ul>
         </div>
@@ -39,7 +39,7 @@
 
     <div class="container mt-5">
         <h1>Football Team Manager</h1>
-        <div id="playerList"></div>
+        <div id="playerList"></div> <!-- Container for listing players -->
     </div>
 
     <!-- Add Player Modal -->
@@ -53,7 +53,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="addPlayerForm">
+                    <form id="addPlayerForm"> <!-- Form for adding a new player -->
                         <div class="form-group">
                             <label for="playerName">Name</label>
                             <input type="text" class="form-control" id="playerName" required>
@@ -71,7 +71,7 @@
                                 <option>Forward</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Add Player</button>
+                        <button type="submit" class="btn btn-primary">Add Player</button> <!-- Submit button for the form -->
                     </form>
                 </div>
             </div>
@@ -84,6 +84,6 @@
     <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- Custom JS -->
-    <script defer src="js/script.js"></script>
+    <script defer src="js/script.js"></script> <!-- Custom JavaScript file -->
 </body>
 </html>

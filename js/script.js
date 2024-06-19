@@ -1,5 +1,6 @@
 class Player {
     constructor(name, age, position, status = 'substitute') {
+        // Initialize a new player with name, age, position, and status (default is 'substitute')
         this.name = name;
         this.age = age;
         this.position = position;
@@ -7,46 +8,55 @@ class Player {
     }
 }
 
+// Retrieve players from local storage, parsing JSON if exists, or return an empty array
 const getPlayersFromLocalStorage = () => {
     const playersString = localStorage.getItem('players');
     return playersString ? JSON.parse(playersString) : [];
 };
 
+// Save players array to local storage as a JSON string
 const savePlayersToLocalStorage = (players) => {
     localStorage.setItem('players', JSON.stringify(players));
 };
 
+// Show the modal to add a new player
 const showAddPlayerForm = () => {
     $('#addPlayerModal').modal('show');
 };
 
+// Event listener for the form submission to add a new player
 document.getElementById('addPlayerForm').addEventListener('submit', (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent form from submitting the default way
     try {
+        // Retrieve input values from the form
         const name = document.getElementById('playerName').value;
         const age = parseInt(document.getElementById('playerAge').value);
         const position = document.getElementById('playerPosition').value;
 
         let players = getPlayersFromLocalStorage();
+        // Check if the player already exists in the team
         if (players.some(player => player.name === name)) {
             throw new Error('The player is already in the team.');
         }
 
+        // Add the new player to the players array
         players.push(new Player(name, age, position));
-        savePlayersToLocalStorage(players);
+        savePlayersToLocalStorage(players); // Save updated players array to local storage
         alert('Player added successfully.');
-        $('#addPlayerModal').modal('hide');
-        e.target.reset();
+        $('#addPlayerModal').modal('hide'); // Hide the modal after adding the player
+        e.target.reset(); // Reset the form fields
     } catch (error) {
         console.error('Error:', error.message);
     }
 });
 
+// Function to list all players and display them in the 'playerList' div
 const listPlayers = async () => {
     try {
         const players = getPlayersFromLocalStorage();
         const playersListDiv = document.getElementById('playerList');
-        playersListDiv.innerHTML = '';
+        playersListDiv.innerHTML = ''; // Clear existing list
+        // Create and append player info to the div
         players.forEach((player, index) => {
             const playerInfo = document.createElement('div');
             playerInfo.innerHTML = `
@@ -55,23 +65,25 @@ const listPlayers = async () => {
             `;
             playersListDiv.appendChild(playerInfo);
         });
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Optional delay
     } catch (error) {
         console.error('Error:', error.message);
     }
 };
 
+// Function to delete a player by index and update the list
 const deletePlayer = async (index) => {
     try {
         const players = getPlayersFromLocalStorage();
-        players.splice(index, 1);
-        savePlayersToLocalStorage(players);
-        await listPlayers();
+        players.splice(index, 1); // Remove player from array
+        savePlayersToLocalStorage(players); // Save updated array to local storage
+        await listPlayers(); // Refresh the player list
     } catch (error) {
         console.error('Error:', error.message);
     }
 };
 
+// Function to change a player's position
 const changePosition = async () => {
     try {
         const players = getPlayersFromLocalStorage();
@@ -90,14 +102,15 @@ const changePosition = async () => {
             throw new Error('Invalid position selection.');
         }
 
-        player.position = selectedPosition;
-        savePlayersToLocalStorage(players);
+        player.position = selectedPosition; // Update player's position
+        savePlayersToLocalStorage(players); // Save updated array to local storage
         alert('Position assigned successfully.');
     } catch (error) {
         console.error('Error:', error.message);
     }
 };
 
+// Function to make a substitution
 const makeSubstitution = async () => {
     try {
         const incomingPlayerName = prompt("Enter the name of the incoming player:");
@@ -111,15 +124,17 @@ const makeSubstitution = async () => {
             throw new Error('One or both players not found.');
         }
 
+        // Update statuses for substitution
         incomingPlayer.status = 'starter';
         outgoingPlayer.status = 'substitute';
-        savePlayersToLocalStorage(players);
+        savePlayersToLocalStorage(players); // Save updated array to local storage
         alert('Substitution made successfully.');
     } catch (error) {
         console.error('Error:', error.message);
     }
 };
 
+// Function to start the game by selecting players
 const startGame = async () => {
     try {
         const players = getPlayersFromLocalStorage();
@@ -128,6 +143,7 @@ const startGame = async () => {
         const playerNames = prompt("Enter the names of the players to start the game, separated by commas:");
         const namesArray = playerNames.split(',').map(name => name.trim());
 
+        // Mark selected players as 'playing'
         namesArray.forEach(playerName => {
             const player = players.find(player => player.name === playerName);
             if (!player) {
@@ -137,7 +153,7 @@ const startGame = async () => {
             selectedPlayers.push(playerName);
         });
 
-        savePlayersToLocalStorage(players);
+        savePlayersToLocalStorage(players); // Save updated array to local storage
         alert('Game started successfully.');
     } catch (error) {
         console.error('Error:', error.message);
